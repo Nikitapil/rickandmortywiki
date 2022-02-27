@@ -1,0 +1,113 @@
+.header {
+  min-height: 70px;
+  background:  linear-gradient(to top right, #289b00, #7cec68);
+  padding: 10px 0;
+  box-shadow: 0 2px 8px rgb(0, 0, 0);
+}
+.header__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header__nav-list {
+  display: flex;
+  gap: 15px;
+}
+.header__link-item {
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 21px;
+  color: #000000;
+  transition: 0.3s;
+  &_active {
+    text-decoration: underline;
+  }
+  &:hover {
+    color: #011864;
+  }
+}
+.header__mobile-btn {
+  width: 30px;
+  height: 25px;
+  position: relative;
+  background: none;
+  border: none;
+  display: none;
+  &:before {
+    content: '';
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: #000;
+    transition: 0.4s;
+  }
+  &:after {
+    content: '';
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    background: #000;
+    transition: 0.4s;
+  }
+  & span {
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    top: 45%;
+    left: 0;
+    background: #000;
+  }
+}
+@media (max-width: 480px) {
+  .header__nav-list {
+    display: none;
+    animation: menu-opener 0.5s linear;
+    &.mobile-active {
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      align-items: center;
+      top: 70px;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      padding-top: 20px;
+      background: rgba(168, 245, 114, 0.7);
+    }
+  }
+  .header__mobile-btn {
+    display: block;
+    &.mobile-active {
+      &:after {
+        bottom: 45%;
+        transform: rotate(-45deg);
+      }
+      &:before {
+        top: 45%;
+        transform: rotate(45deg);
+      }
+      & span {
+        display: none;
+      }
+    }
+  }
+  .header.mobile-active {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+}
+@keyframes menu-opener {
+  0% {
+    transform: translateY(-50%) scaleY(0);
+  }
+  100% {
+    transform: translateY(0) scaleY(1);
+  }
+}
